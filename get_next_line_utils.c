@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dacrespo <dacrespo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 14:51:55 by dacrespo          #+#    #+#             */
-/*   Updated: 2024/07/06 12:16:19 by dacrespo         ###   ########.fr       */
+/*   Created: 2024/07/06 12:59:33 by dacrespo          #+#    #+#             */
+/*   Updated: 2024/07/06 13:01:34 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ char	*ft_strchr(const char *s, int c)
 	}
 	return (NULL);
 }
-// Correcta
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -75,7 +74,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	str = (char *) malloc(len + 1);
 	if (str == 0)
-		return(NULL);
+		return (NULL);
 	i = 0;
 	j = 0;
 	while (s[i])
@@ -91,5 +90,11 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (str);
 }
 
-//Crear la función
-//ft_joinandfree
+char	*ft_joinandfree(char *s1, char *s2)
+{
+	char	*temp;
+
+	temp = ft_strjoin(s1, s2);
+	free(s1);
+	return (temp);
+}
