@@ -6,7 +6,7 @@
 /*   By: dacrespo <dacrespo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 12:59:33 by dacrespo          #+#    #+#             */
-/*   Updated: 2024/07/06 13:01:34 by dacrespo         ###   ########.fr       */
+/*   Updated: 2024/07/21 17:35:04 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	join = (char *)malloc((len_total +1) * sizeof(char));
 	if (join == NULL)
 		return (NULL);
+	start = join;
 	start = join;
 	while (*s1)
 		*join++ = *s1++;

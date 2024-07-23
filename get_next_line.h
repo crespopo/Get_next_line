@@ -9,7 +9,7 @@
 /*   Updated: 2024/07/06 13:06:32 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-//prueba ipad
+
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
