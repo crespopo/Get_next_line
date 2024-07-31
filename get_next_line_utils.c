@@ -6,7 +6,7 @@
 /*   By: dacrespo <dacrespo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 12:59:33 by dacrespo          #+#    #+#             */
-/*   Updated: 2024/07/21 17:35:04 by dacrespo         ###   ########.fr       */
+/*   Updated: 2024/07/31 16:29:37 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ size_t	ft_strlen(const char *s)
 }
 
 char	*ft_strchr(const char *s, int c)
-
 {
 	while (*s != '\0' || (char)c == '\0')
 	{
@@ -45,7 +44,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	len_s2;
 	size_t	len_total;
 	char	*join;
-	char	*start;
 
 	if (s1 == NULL || s2 == NULL)
 		return (NULL);
@@ -55,14 +53,12 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	join = (char *)malloc((len_total +1) * sizeof(char));
 	if (join == NULL)
 		return (NULL);
-	start = join;
-	start = join;
 	while (*s1)
 		*join++ = *s1++;
 	while (*s2)
 		*join++ = *s2++;
 	*join = '\0';
-	return (start);
+	return (join);
 }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
@@ -99,3 +95,5 @@ char	*ft_joinandfree(char *s1, char *s2)
 	free(s1);
 	return (temp);
 }
+
+
