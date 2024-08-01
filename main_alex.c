@@ -6,7 +6,7 @@
 /*   By: dacrespo <dacrespo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 15:12:20 by dacrespo          #+#    #+#             */
-/*   Updated: 2024/08/01 12:27:33 by dacrespo         ###   ########.fr       */
+/*   Updated: 2024/08/01 15:38:19 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-# define BUFFER_SIZE 5
+//# define BUFFER_SIZE 1024
+
 size_t	ft_strlen(const char *s)
 {
+	if (s == NULL)
+	return(0);
+
 	size_t	i;
 
 	i = 0;
@@ -67,16 +71,22 @@ void	*ft_memset(void *str, int c, size_t n)
 	return (str = c_str);
 }
 
-char	*ft_strchr(const char *s, int c)
+char *ft_strchr(const char *s, int c)
 {
-	while (*s != '\0' || (char)c == '\0')
+	while (*s != '\0')
 	{
-		if (*s == (char) c)
+		if (*s == (char)c)
 		{
 			return ((char *)s);
 		}
 		s++;
 	}
+
+	if (c == '\0')
+	{
+		return ((char *)s);
+	}
+
 	return (NULL);
 }
 
@@ -108,6 +118,7 @@ char	*get_next_line(int fd)
 	int		i;
 	int		idx_buffer;
 	int		prueba;
+	int		BUFFER_SIZE;
 
 	texto_dentro_del_fichero = malloc(BUFFER_SIZE + 1);
 	temporal = malloc(BUFFER_SIZE);
@@ -122,6 +133,7 @@ char	*get_next_line(int fd)
 	prueba = 0;
 	i_de_assign = 0;
 	idx_buffer = 0;
+	BUFFER_SIZE = 0;
 	if (ft_strchr(texto_dentro_del_fichero, '\n'))
 	{
 		while (texto_dentro_del_fichero[i_de_assign] != '\0')
@@ -149,7 +161,7 @@ char	*get_next_line(int fd)
 
 int	main(void)
 {
-	int		fd; //file desriptor
+	int		fd; //file descriptor
 	int		tamaño_del_fichero;
 	int		assign;
 	char	*texto_dentro_del_fichero;
@@ -161,7 +173,7 @@ int	main(void)
 	// 	printf ("\033[34mError, envia argumentos a la función\n\033[0m");
 	// 	return (1);
 	// }
-	fd = open("miFichero.txt", O_RDONLY);
+	fd = open("/home/dacrespo/42_cursus/get_next_line/miFichero.txt", O_RDONLY);
 	if (fd == -1)
 	{
 		printf ("NO FUNCIONA");

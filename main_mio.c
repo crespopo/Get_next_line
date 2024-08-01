@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_mio.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dacrespo <dacrespo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/06 15:12:20 by dacrespo          #+#    #+#             */
-/*   Updated: 2024/07/31 18:16:33 by dacrespo         ###   ########.fr       */
+/*   Created: 2024/08/01 13:17:07 by dacrespo          #+#    #+#             */
+/*   Updated: 2024/08/01 13:17:57 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,12 @@
 #include <stdlib.h>
 
 # define BUFFER_SIZE 5
+
 size_t	ft_strlen(const char *s)
 {
+	if (s == NULL)
+	return(0);
+
 	size_t	i;
 
 	i = 0;
@@ -52,51 +56,62 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (join);
 }
 
-void	*ft_memset(void *str, int c, size_t n)
-{
-	unsigned char	*c_str;
-	size_t			i;
 
-	c_str = (unsigned char *)str;
-	i = 0;
-	while (i < n)
-	{
-		c_str[i] = (unsigned char)c;
-		i++;
-	}
-	return (str = c_str);
-}
 
-char	*ft_strchr(const char *s, int c)
+char *ft_strchr(const char *s, int c)
 {
-	while (*s != '\0' || (char)c == '\0')
+	while (*s != '\0')
 	{
-		if (*s == (char) c)
+		if (*s == (char)c)
 		{
 			return ((char *)s);
 		}
 		s++;
 	}
+
+	if (c == '\0')
+	{
+		return ((char *)s);
+	}
+
 	return (NULL);
 }
 
-char	*ft_strdup(const char *s)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*res;
 	size_t	i;
+	size_t	j;
+	char	*str;
 
+	if (s == NULL)
+		return (NULL);
+	str = (char *) malloc(len + 1);
+	if (str == 0)
+		return (NULL);
 	i = 0;
-	res = malloc((ft_strlen(s) + 1));
-	if (!res)
-		return (0);
-	ft_memset(res, '\0', ft_strlen(s));
-	while (i < ft_strlen(s))
+	j = 0;
+	while (s[i])
 	{
-		res[i] = s[i];
+		if (i >= start && j < len)
+		{
+			str[j] = s[i];
+			j++;
+		}
 		i++;
 	}
-	return (res);
+	str[j] = 0;
+	return (str);
 }
+
+char	*ft_joinandfree(char *s1, char *s2)
+{
+	char	*temp;
+
+	temp = ft_strjoin(s1, s2);
+	free(s1);
+	return (temp);
+
+
 
 char	*get_next_line(int fd)
 {
@@ -149,7 +164,7 @@ char	*get_next_line(int fd)
 
 int	main(void)
 {
-	int		fd; //file desriptor
+	int		fd; //file descriptor
 	int		tamaño_del_fichero;
 	int		assign;
 	char	*texto_dentro_del_fichero;
@@ -161,7 +176,7 @@ int	main(void)
 	// 	printf ("\033[34mError, envia argumentos a la función\n\033[0m");
 	// 	return (1);
 	// }
-	fd = open("miFichero.txt", O_RDONLY);
+	fd = open("/home/dacrespo/42_cursus/get_next_line/miFichero.txt", O_RDONLY);
 	if (fd == -1)
 	{
 		printf ("NO FUNCIONA");
