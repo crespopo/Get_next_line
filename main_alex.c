@@ -6,7 +6,7 @@
 /*   By: dacrespo <dacrespo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 15:12:20 by dacrespo          #+#    #+#             */
-/*   Updated: 2024/08/01 15:38:19 by dacrespo         ###   ########.fr       */
+/*   Updated: 2024/08/01 17:30:49 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,27 +110,26 @@ char	*ft_strdup(const char *s)
 
 char	*get_next_line(int fd)
 {
-	int		tamaño_del_fichero;
-	int		i_de_assign;
-	char	*texto_dentro_del_fichero;
-	char	*temporal;
-	char	*re;
-	int		i;
-	int		idx_buffer;
-	int		prueba;
-	int		BUFFER_SIZE;
+	int		tamaño_del_fichero; // Contador de todos los caracteres del texto en bytes
+	int		i_de_assign; // Indice de asignación
+	char	*texto_dentro_del_fichero; //Texto que leemos cada vez ejecutamos read (depende del buffer)
+	char	*temporal; //guarda solo los bytes leidos de una vez
+	char	*re; //Guarda todos los temporales leidos hasta el final de la linea
+	int		idx_buffer; //Indice donde nos quedamos en texto dentro de fichero
+	int		BUFFER_SIZE; // Lo podemos definir aqui o arriba con  #define
 
 	texto_dentro_del_fichero = malloc(BUFFER_SIZE + 1);
 	temporal = malloc(BUFFER_SIZE);
 	if (!texto_dentro_del_fichero || !temporal || !re)
 		return (0);
 	texto_dentro_del_fichero[BUFFER_SIZE] = '\0';
-	tamaño_del_fichero = read(fd, texto_dentro_del_fichero, BUFFER_SIZE);
-	re = malloc (tamaño_del_fichero + 1);
+	tamaño_del_fichero = read(fd, texto_dentro_del_fichero, BUFFER_SIZE); // Nos da de resultado el total de bytes leidos
+	re = malloc(tamaño_del_fichero + 1);
+
+
 	if (!re)
 		return (0);
-	i = 3;
-	prueba = 0;
+
 	i_de_assign = 0;
 	idx_buffer = 0;
 	BUFFER_SIZE = 0;
@@ -142,7 +141,8 @@ char	*get_next_line(int fd)
 			{
 				temporal[i_de_assign] = texto_dentro_del_fichero[idx_buffer];
 				temporal[++i_de_assign] = '\0';
-				re = ft_strdup(temporal);
+				re = ft_strdup(texto_dentro_del_fichero);
+
 				return (re);
 			}
 			temporal[i_de_assign++] = texto_dentro_del_fichero[idx_buffer++];
@@ -155,24 +155,16 @@ char	*get_next_line(int fd)
 		return (re);
 	}
 	re = ft_strdup(texto_dentro_del_fichero);
+	printf("tamaño del fichero: %d\n", tamaño_del_fichero);
 	return (re);
 }
+
 
 
 int	main(void)
 {
 	int		fd; //file descriptor
-	int		tamaño_del_fichero;
-	int		assign;
-	char	*texto_dentro_del_fichero;
-	char	*temporal;
-	char	*re;
-	int		i;
-	// if (argc < 2)
-	// {
-	// 	printf ("\033[34mError, envia argumentos a la función\n\033[0m");
-	// 	return (1);
-	// }
+
 	fd = open("/home/dacrespo/42_cursus/get_next_line/miFichero.txt", O_RDONLY);
 	if (fd == -1)
 	{
