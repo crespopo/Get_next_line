@@ -6,11 +6,11 @@
 /*   By: dacrespo <dacrespo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 12:59:33 by dacrespo          #+#    #+#             */
-/*   Updated: 2024/08/01 13:04:24 by dacrespo         ###   ########.fr       */
+/*   Updated: 2024/08/13 11:02:50 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// Hemos protegido contra errores ft_strlen y se ha rehecho ft_strchr
+// Listo, Hemos protegido contra errores ft_strlen y se ha rehecho ft_strchr
 #include "get_next_line.h"
 
 size_t	ft_strlen(const char *s)

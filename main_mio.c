@@ -6,7 +6,7 @@
 /*   By: dacrespo <dacrespo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:17:07 by dacrespo          #+#    #+#             */
-/*   Updated: 2024/08/01 13:17:57 by dacrespo         ###   ########.fr       */
+/*   Updated: 2024/08/12 14:08:39 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,77 +112,8 @@ char	*ft_joinandfree(char *s1, char *s2)
 	return (temp);
 
 
-
+}
 char	*get_next_line(int fd)
 {
-	int		tamaño_del_fichero;
-	int		i_de_assign;
-	char	*texto_dentro_del_fichero;
-	char	*temporal;
-	char	*re;
-	int		i;
-	int		idx_buffer;
-	int		prueba;
 
-	texto_dentro_del_fichero = malloc(BUFFER_SIZE + 1);
-	temporal = malloc(BUFFER_SIZE);
-	if (!texto_dentro_del_fichero || !temporal || !re)
-		return (0);
-	texto_dentro_del_fichero[BUFFER_SIZE] = '\0';
-	tamaño_del_fichero = read(fd, texto_dentro_del_fichero, BUFFER_SIZE);
-	re = malloc (tamaño_del_fichero + 1);
-	if (!re)
-		return (0);
-	i = 3;
-	prueba = 0;
-	i_de_assign = 0;
-	idx_buffer = 0;
-	if (ft_strchr(texto_dentro_del_fichero, '\n'))
-	{
-		while (texto_dentro_del_fichero[i_de_assign] != '\0')
-		{
-			if (texto_dentro_del_fichero[idx_buffer] == '\n')
-			{
-				temporal[i_de_assign] = texto_dentro_del_fichero[idx_buffer];
-				temporal[++i_de_assign] = '\0';
-				re = ft_strdup(temporal);
-				return (re);
-			}
-			temporal[i_de_assign++] = texto_dentro_del_fichero[idx_buffer++];
-		}
-		temporal[i_de_assign] = '\0';
-		if (re == NULL)
-			re = ft_strdup(temporal);
-		else
-			re = ft_strjoin(re, temporal);
-		return (re);
-	}
-	re = ft_strdup(texto_dentro_del_fichero);
-	return (re);
-}
-
-
-int	main(void)
-{
-	int		fd; //file descriptor
-	int		tamaño_del_fichero;
-	int		assign;
-	char	*texto_dentro_del_fichero;
-	char	*temporal;
-	char	*re;
-	int		i;
-	// if (argc < 2)
-	// {
-	// 	printf ("\033[34mError, envia argumentos a la función\n\033[0m");
-	// 	return (1);
-	// }
-	fd = open("/home/dacrespo/42_cursus/get_next_line/miFichero.txt", O_RDONLY);
-	if (fd == -1)
-	{
-		printf ("NO FUNCIONA");
-		return (0);
-	}
-	printf("\nesto es la cadena guardada --->> %s\n", get_next_line(fd));
-	close (fd);
-	return (0);
 }
