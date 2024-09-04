@@ -6,7 +6,7 @@
 /*   By: dacrespo <dacrespo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 11:03:16 by dacrespo          #+#    #+#             */
-/*   Updated: 2024/08/13 11:17:37 by dacrespo         ###   ########.fr       */
+/*   Updated: 2024/09/04 12:23:44 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*read_line(int fd, char *backup)
 
 
 //Extraer línea: Llama a extract_line para obtener la primera línea completa de backup
-// Propósito: Extrae la primera línea completa del backup
+// Propósito: Extrae la primera línea completa del
 char	*extract_line(char *backup)
 
 
