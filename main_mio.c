@@ -6,7 +6,7 @@
 /*   By: dacrespo <dacrespo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:17:07 by dacrespo          #+#    #+#             */
-/*   Updated: 2024/08/12 14:08:39 by dacrespo         ###   ########.fr       */
+/*   Updated: 2025/02/03 11:08:20 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-# define BUFFER_SIZE 5
+#define BUFFER_SIZE 5
 
 size_t	ft_strlen(const char *s)
 {
-	if (s == NULL)
-	return(0);
-
 	size_t	i;
 
 	i = 0;
+	if (s == NULL)
+		return (0);
 	while (*s != '\0')
 	{
 		s++;
@@ -56,9 +55,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (join);
 }
 
-
-
-char *ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
 	while (*s != '\0')
 	{
@@ -68,12 +65,10 @@ char *ft_strchr(const char *s, int c)
 		}
 		s++;
 	}
-
 	if (c == '\0')
 	{
 		return ((char *)s);
 	}
-
 	return (NULL);
 }
 
@@ -110,10 +105,4 @@ char	*ft_joinandfree(char *s1, char *s2)
 	temp = ft_strjoin(s1, s2);
 	free(s1);
 	return (temp);
-
-
-}
-char	*get_next_line(int fd)
-{
-
 }

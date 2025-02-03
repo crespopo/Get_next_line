@@ -6,7 +6,7 @@
 /*   By: dacrespo <dacrespo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 12:59:33 by dacrespo          #+#    #+#             */
-/*   Updated: 2024/08/13 11:02:50 by dacrespo         ###   ########.fr       */
+/*   Updated: 2025/02/03 13:09:22 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,11 @@
 
 size_t	ft_strlen(const char *s)
 {
-	if (s == NULL)
-	return(0);
-
 	size_t	i;
 
 	i = 0;
+	if (s == NULL)
+		return (0);
 	while (*s != '\0')
 	{
 		s++;
@@ -29,7 +28,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char *ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
 	while (*s != '\0')
 	{
@@ -39,12 +38,10 @@ char *ft_strchr(const char *s, int c)
 		}
 		s++;
 	}
-
 	if (c == '\0')
 	{
 		return ((char *)s);
 	}
-
 	return (NULL);
 }
 
@@ -97,7 +94,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (str);
 }
 
-char	*ft_joinandfree(char *s1, char *s2)
+char	*ft_join_free(char *s1, char *s2)
 {
 	char	*temp;
 
@@ -105,5 +102,3 @@ char	*ft_joinandfree(char *s1, char *s2)
 	free(s1);
 	return (temp);
 }
-
-

@@ -6,7 +6,7 @@
 /*   By: dacrespo <dacrespo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 15:12:20 by dacrespo          #+#    #+#             */
-/*   Updated: 2024/08/12 14:06:43 by dacrespo         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:01:42 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+# define BUFFER_SIZE 20
 //# define BUFFER_SIZE 1024
 
 size_t	ft_strlen(const char *s)
@@ -33,29 +33,6 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	size_t	len_s1;
-	size_t	len_s2;
-	size_t	len_total;
-	char	*join;
-
-	if (s1 == NULL || s2 == NULL)
-		return (NULL);
-	len_s1 = ft_strlen(s1);
-	len_s2 = ft_strlen(s2);
-	len_total = (len_s1 + len_s2);
-	join = (char *)malloc((len_total +1) * sizeof(char));
-	if (join == NULL)
-		return (NULL);
-	while (*s1)
-		*join++ = *s1++;
-	while (*s2)
-		*join++ = *s2++;
-	*join = '\0';
-	return (join);
-}
-
 void	*ft_memset(void *str, int c, size_t n)
 {
 	unsigned char	*c_str;
@@ -69,6 +46,56 @@ void	*ft_memset(void *str, int c, size_t n)
 		i++;
 	}
 	return (str = c_str);
+}
+
+char	*ft_strdup(const char *s)
+{
+	char	*res;
+	size_t	i;
+
+	i = 0;
+	res = malloc((ft_strlen(s) + 1));
+	if (!res)
+		return (0);
+	ft_memset(res, '\0', ft_strlen(s));
+	while (i < ft_strlen(s))
+	{
+		res[i] = s[i];
+		i++;
+	}
+	return (res);
+}
+
+char	*ft_strjoin(char *s1, char s2)
+{
+	size_t	len_s1;
+	size_t	len_total;
+	char	*join;
+
+	if (!s2)
+		return (s1);
+	if (!s1)
+	{
+		join = (char *)malloc(2 * sizeof(char));
+		join[0] = s2;
+		join[1] = '\0';
+		return (join);
+	}
+	printf("aqui en strjoin1\n");
+	len_s1 = ft_strlen(s1);
+	len_total = len_s1 + 1;
+	join = (char *)malloc((len_total +1) * sizeof(char));
+	if (join == NULL)
+		return (NULL);
+	printf("aqui en strjoin s1 --> %s\n", s1);
+	while (*s1)
+		*join++ = *s1++;
+	printf("aqui en strjoin2\njoin1 -->> %s\n", join);
+	if (s2)
+		*join++ = s2;
+	*join = '\0';
+	printf("aqui en strjoin3\njoin2 -->> %s\n", join);
+	return (join);
 }
 
 char *ft_strchr(const char *s, int c)
@@ -90,82 +117,45 @@ char *ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-char	*ft_strdup(const char *s)
-{
-	char	*res;
-	size_t	i;
 
-	i = 0;
-	res = malloc((ft_strlen(s) + 1));
-	if (!res)
-		return (0);
-	ft_memset(res, '\0', ft_strlen(s));
-	while (i < ft_strlen(s))
-	{
-		res[i] = s[i];
-		i++;
-	}
-	return (res);
-}
 
 char	*get_next_line(int fd)
 {
 	int		tamaño_del_fichero; // Contador de todos los caracteres del texto en bytes
 	int		i_de_assign; // Indice de asignación
-	char	*texto_dentro_del_fichero; //Texto que leemos cada vez ejecutamos read (depende del buffer)
+	char	*texto_leido; //Texto que leemos cada vez ejecutamos read (depende del buffer)
 	char	*temporal; //guarda solo los bytes leidos de una vez
-	char	*re; //Guarda todos los temporales leidos hasta el final de la linea
 	int		idx_buffer; //Indice donde nos quedamos en texto dentro de fichero
-	int		BUFFER_SIZE; // Lo podemos definir aqui o arriba con  #define
 
-	texto_dentro_del_fichero = malloc(BUFFER_SIZE + 1);
-	temporal = malloc(BUFFER_SIZE);
-	if (!texto_dentro_del_fichero || !temporal || !re)
+	printf("aqui\n");
+	texto_leido = (char *)malloc(BUFFER_SIZE + 1);
+	if (!texto_leido)
 		return (0);
-	texto_dentro_del_fichero[BUFFER_SIZE] = '\0';
-	tamaño_del_fichero = read(fd, texto_dentro_del_fichero, BUFFER_SIZE); // Nos da de resultado el total de bytes leidos
-	re = malloc(tamaño_del_fichero + 1);
-
-
-	if (!re)
-		return (0);
-
-	i_de_assign = 0;
+	texto_leido[BUFFER_SIZE] = '\0';
+	tamaño_del_fichero = read(fd, texto_leido, BUFFER_SIZE); // Nos da de resultado el total de bytes leidos
+	texto_leido[tamaño_del_fichero] = '\0';
+	printf("aqui1\n");
+	i_de_assign = -1;
 	idx_buffer = 0;
-	BUFFER_SIZE = 0;
-	if (ft_strchr(texto_dentro_del_fichero, '\n'))
+	temporal = NULL;
+	printf("aqui2\n");
+	while (texto_leido[++i_de_assign] != '\0' && texto_leido[i_de_assign] != '\n')
 	{
-		while (texto_dentro_del_fichero[i_de_assign] != '\0')
-		{
-			if (texto_dentro_del_fichero[idx_buffer] == '\n')
-			{
-				temporal[i_de_assign] = texto_dentro_del_fichero[idx_buffer];
-				temporal[++i_de_assign] = '\0';
-				re = ft_strdup(texto_dentro_del_fichero);
-
-				return (re);
-			}
-			temporal[i_de_assign++] = texto_dentro_del_fichero[idx_buffer++];
-		}
-		temporal[i_de_assign] = '\0';
-		if (re == NULL)
-			re = ft_strdup(temporal);
-		else
-			re = ft_strjoin(re, temporal);
-		return (re);
+		temporal = ft_strjoin(temporal, texto_leido[i_de_assign]);
+		printf("temporal-->> %s\ntexto_leido-->> %s\nchar-->> %c\nidx-->> %d\n", temporal, texto_leido, texto_leido[i_de_assign], i_de_assign);
 	}
-	re = ft_strdup(texto_dentro_del_fichero);
-	printf("tamaño del fichero: %d\n", tamaño_del_fichero);
-	return (re);
+
+	printf("aqui3\n");
+	temporal = ft_strjoin(temporal, '\0');
+	printf("aqui4\n");
+	return (temporal);
 }
-
-
 
 int	main(void)
 {
 	int		fd; //file descriptor
 
-	fd = open("/home/dacrespo/42_cursus/get_next_line/miFichero.txt", O_RDONLY);
+	fd = open("./miFichero.txt", O_RDONLY);
 	if (fd == -1)
 	{
 		printf ("NO FUNCIONA");

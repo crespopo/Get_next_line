@@ -6,7 +6,7 @@
 /*   By: dacrespo <dacrespo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 11:03:16 by dacrespo          #+#    #+#             */
-/*   Updated: 2024/09/04 12:23:44 by dacrespo         ###   ########.fr       */
+/*   Updated: 2025/02/03 11:21:33 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,28 +23,38 @@
 de línea (\n) o hasta que no haya más datos que leer.*/
 char	*read_line(int fd, char *backup)
 {
-	int bytes_read;
-	char *buffer;
+	int		bytes_read;
+	char	*buffer;
 
 	bytes_read = 0;
-	buffer = (char*)malloc ((BUFFER_SIZE +1))
+	buffer = (char *)malloc((BUFFER_SIZE + 1);
 
-
-
+}
 
 //Extraer línea: Llama a extract_line para obtener la primera línea completa de backup
 // Propósito: Extrae la primera línea completa del
 char	*extract_line(char *backup)
-
+{
+	char	*line;
+	int 	i;
+}
 
 
 //Preparar para la próxima llamada: Llama a next_line para actualizar backup con cualquier
 //contenido que quede después de la línea extraída
 /*Propósito: Actualiza el backup para contener solo el contenido después de la línea extraída
 , preparando backup para la próxima llamada a get_next_line*/
-char	*next_line(char *backup)
-
+char	*next_line(char *backup);
+{
+	char	*nex_backup;
+	int		count;
+	int		i;
+}
 
 
 
 char	*get_next_line(int fd)
+{
+	static char	*backup;
+	char		*line;
+}
