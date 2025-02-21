@@ -1,68 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_lucia.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dacrespo <dacrespo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/21 11:21:17 by dacrespo          #+#    #+#             */
-/*   Updated: 2025/02/21 13:57:33 by dacrespo         ###   ########.fr       */
+/*   Created: 2023/11/11 14:25:32 by luciafe2          #+#    #+#             */
+/*   Updated: 2025/02/20 17:21:23 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*read_line(int fd, char *backup)
+char	*read_line(int fd, char *backup)
 {
 	int		bytes_read;
 	char	*buffer;
 
 	bytes_read = 0;
-	buffer = (char *) malloc(BUFFER_SIZE + 1);
+	buffer = (char *)malloc(BUFFER_SIZE + 1);
 	if (!buffer)
 		return (NULL);
-	printf("aqui readline1\n");
 	while (!ft_strchr(backup, '\n'))
 	{
-		printf("aqui readline2\n");
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
-		{
-			free(buffer);
-			return (NULL);
-		}
-		printf("aqui readline3\n");
+			return (free(buffer), NULL);
 		buffer[bytes_read] = '\0';
 		if (bytes_read == 0)
 			break ;
-		printf("aqui readline4\n");
 		backup = ft_joinandfree(backup, buffer);
-		printf("aqui readline5\n");
 	}
 	free(buffer);
 	return (backup);
 }
 
-static char	*extract_line(char *backup)
+char	*extract_line(char *backup)
 {
 	char	*line;
 	int		i;
 
 	i = 0;
-
 	if (backup[i] == '\0')
 		return (NULL);
 	while (backup[i] != '\n' && backup[i] != '\0')
-		i++;
+		i ++;
 	if (backup[i] == '\n')
-		i++;
-	line = ft_substr(backup, 0, i);
+		i ++;
+	line = ft_substr (backup, 0, i);
 	if (!line)
 		return (NULL);
 	return (line);
 }
 
-static char	*next_line(char *backup)
+char	*next_line(char *backup)
 {
 	char	*new_backup;
 	int		count;
@@ -73,18 +64,18 @@ static char	*next_line(char *backup)
 	if (!backup)
 		return (NULL);
 	while (backup[count] != '\n' && backup[count] != '\0')
-		count++;
+		count ++;
 	if (backup[count] == '\0')
-		return (free(backup), NULL);
-	count++;
-	new_backup = (char *)malloc(ft_strlen(backup)- count + 1);
+		return (free (backup), NULL);
+	count ++;
+	new_backup = (char *)malloc(ft_strlen(backup) - count + 1);
 	if (!new_backup)
 		return (free(backup), NULL);
 	while (backup[count] != '\0')
 	{
 		new_backup[i] = backup[count];
-		i++;
-		count++;
+		i ++;
+		count ++;
 	}
 	free(backup);
 	new_backup[i] = '\0';
@@ -108,9 +99,7 @@ char	*get_next_line(int fd)
 	backup = read_line(fd, backup);
 	if (!backup)
 		return (NULL);
-	printf("aqui2\n");
 	line = extract_line(backup);
-	printf("aqui3\n");
 	backup = next_line(backup);
 	return (line);
 }

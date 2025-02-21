@@ -6,7 +6,7 @@
 /*   By: dacrespo <dacrespo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 13:02:08 by dacrespo          #+#    #+#             */
-/*   Updated: 2025/02/05 09:44:28 by dacrespo         ###   ########.fr       */
+/*   Updated: 2025/02/21 13:55:55 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_joinandfree(char *s1, char *s2);
+char	*get_next_line(int fd);
 
 #endif

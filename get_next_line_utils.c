@@ -6,7 +6,7 @@
 /*   By: dacrespo <dacrespo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 12:59:33 by dacrespo          #+#    #+#             */
-/*   Updated: 2025/02/03 13:09:22 by dacrespo         ###   ########.fr       */
+/*   Updated: 2025/02/21 14:01:06 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,14 @@ char	*ft_strchr(const char *s, int c)
 {
 	while (*s != '\0')
 	{
-		if (*s == (char)c)
+		if (*s == (char)c || (char)c == '\0')
 		{
 			return ((char *)s);
 		}
+
 		s++;
 	}
+	printf("aqui strchr2\n");
 	if (c == '\0')
 	{
 		return ((char *)s);
@@ -94,7 +96,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (str);
 }
 
-char	*ft_join_free(char *s1, char *s2)
+char	*ft_joinandfree(char *s1, char *s2)
 {
 	char	*temp;
 
