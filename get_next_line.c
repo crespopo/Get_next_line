@@ -6,7 +6,7 @@
 /*   By: dacrespo <dacrespo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 11:21:17 by dacrespo          #+#    #+#             */
-/*   Updated: 2025/02/21 13:57:33 by dacrespo         ###   ########.fr       */
+/*   Updated: 2025/02/21 14:32:20 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,23 @@ static char	*read_line(int fd, char *backup)
 	buffer = (char *) malloc(BUFFER_SIZE + 1);
 	if (!buffer)
 		return (NULL);
-	printf("aqui readline1\n");
-	while (!ft_strchr(backup, '\n'))
+	while (backup == NULL || !ft_strchr(backup, '\n'))
 	{
-		printf("aqui readline2\n");
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
 		{
 			free(buffer);
 			return (NULL);
 		}
-		printf("aqui readline3\n");
 		buffer[bytes_read] = '\0';
 		if (bytes_read == 0)
 			break ;
-		printf("aqui readline4\n");
 		backup = ft_joinandfree(backup, buffer);
-		printf("aqui readline5\n");
+	printf("Contenido de buffer: %s\n", buffer);
+	printf("Contenido de backup: %s\n", backup);
 	}
 	free(buffer);
+	printf("Contenido de buffer despues de free: %s\n", buffer);
 	return (backup);
 }
 

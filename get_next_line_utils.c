@@ -6,7 +6,7 @@
 /*   By: dacrespo <dacrespo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 12:59:33 by dacrespo          #+#    #+#             */
-/*   Updated: 2025/02/21 14:01:06 by dacrespo         ###   ########.fr       */
+/*   Updated: 2025/02/21 14:35:24 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,18 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	len_s2;
 	size_t	len_total;
 	char	*join;
-
+		printf("Contenido de s1:%s\n", s1);
+		printf("Contenido de s2:%s\n", s2);
 	if (s1 == NULL || s2 == NULL)
 		return (NULL);
+	if (!s1)
+		s1 == s2;
+
+
 	len_s1 = ft_strlen(s1);
 	len_s2 = ft_strlen(s2);
+	printf("longitud de s1:%lui\n", len_s1);
+	printf("longitud de de s2:%lui\n", len_s2);
 	len_total = (len_s1 + len_s2);
 	join = (char *)malloc((len_total +1) * sizeof(char));
 	if (join == NULL)
