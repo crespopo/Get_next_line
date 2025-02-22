@@ -6,13 +6,13 @@
 /*   By: dacrespo <dacrespo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 11:21:17 by dacrespo          #+#    #+#             */
-/*   Updated: 2025/02/21 14:32:20 by dacrespo         ###   ########.fr       */
+/*   Updated: 2025/02/22 13:36:30 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*read_line(int fd, char *backup)
+char	*read_line(int fd, char *backup)
 {
 	int		bytes_read;
 	char	*buffer;
@@ -21,33 +21,28 @@ static char	*read_line(int fd, char *backup)
 	buffer = (char *) malloc(BUFFER_SIZE + 1);
 	if (!buffer)
 		return (NULL);
-	while (backup == NULL || !ft_strchr(backup, '\n'))
+	//while (backup == NULL || !ft_strchr(backup, '\n'))
+	while (!backup || !ft_strchr(backup, '\n'))
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
-		{
-			free(buffer);
-			return (NULL);
-		}
+			return (free(buffer), NULL);
 		buffer[bytes_read] = '\0';
 		if (bytes_read == 0)
 			break ;
 		backup = ft_joinandfree(backup, buffer);
-	printf("Contenido de buffer: %s\n", buffer);
-	printf("Contenido de backup: %s\n", backup);
 	}
-	free(buffer);
-	printf("Contenido de buffer despues de free: %s\n", buffer);
+	if (buffer)
+		free(buffer);
 	return (backup);
 }
 
-static char	*extract_line(char *backup)
+char	*extract_line(char *backup)
 {
 	char	*line;
 	int		i;
 
 	i = 0;
-
 	if (backup[i] == '\0')
 		return (NULL);
 	while (backup[i] != '\n' && backup[i] != '\0')
@@ -60,7 +55,7 @@ static char	*extract_line(char *backup)
 	return (line);
 }
 
-static char	*next_line(char *backup)
+char	*next_line(char *backup)
 {
 	char	*new_backup;
 	int		count;
@@ -106,9 +101,7 @@ char	*get_next_line(int fd)
 	backup = read_line(fd, backup);
 	if (!backup)
 		return (NULL);
-	printf("aqui2\n");
 	line = extract_line(backup);
-	printf("aqui3\n");
 	backup = next_line(backup);
 	return (line);
 }

@@ -6,14 +6,14 @@
 /*   By: dacrespo <dacrespo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 12:59:33 by dacrespo          #+#    #+#             */
-/*   Updated: 2025/02/21 14:35:24 by dacrespo         ###   ########.fr       */
+/*   Updated: 2025/02/22 13:38:59 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // Listo, Hemos protegido contra errores ft_strlen y se ha rehecho ft_strchr
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen(char *s)
 {
 	size_t	i;
 
@@ -28,7 +28,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(char *s, int c)
 {
 	while (*s != '\0')
 	{
@@ -39,7 +39,6 @@ char	*ft_strchr(const char *s, int c)
 
 		s++;
 	}
-	printf("aqui strchr2\n");
 	if (c == '\0')
 	{
 		return ((char *)s);
@@ -47,37 +46,34 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	size_t	len_s1;
 	size_t	len_s2;
 	size_t	len_total;
 	char	*join;
-		printf("Contenido de s1:%s\n", s1);
-		printf("Contenido de s2:%s\n", s2);
-	if (s1 == NULL || s2 == NULL)
-		return (NULL);
+
+	if (s2 == NULL)
+		return (s1);
 	if (!s1)
-		s1 == s2;
-
-
+	{
+		s1 = ft_substr(s2, 0, ft_strlen(s2));
+		return (free(s2), s1);
+	}
 	len_s1 = ft_strlen(s1);
 	len_s2 = ft_strlen(s2);
-	printf("longitud de s1:%lui\n", len_s1);
-	printf("longitud de de s2:%lui\n", len_s2);
 	len_total = (len_s1 + len_s2);
 	join = (char *)malloc((len_total +1) * sizeof(char));
 	if (join == NULL)
 		return (NULL);
-	while (*s1)
-		*join++ = *s1++;
+	join = ft_substr(s1, 0, ft_strlen(s1));
 	while (*s2)
-		*join++ = *s2++;
-	*join = '\0';
+		join[len_s1++]= *s2++;
+	join[len_s1] = '\0';
 	return (join);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char *s, unsigned int start, size_t len)
 {
 	size_t	i;
 	size_t	j;
