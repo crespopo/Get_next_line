@@ -6,7 +6,7 @@
 /*   By: dacrespo <dacrespo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 12:30:26 by dacrespo          #+#    #+#             */
-/*   Updated: 2025/02/22 13:37:49 by dacrespo         ###   ########.fr       */
+/*   Updated: 2025/02/22 17:07:09 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,15 @@ int	main(void)
 	}
 	line = get_next_line(fd);
 	stop = 10;
-	while (stop--)
+	while (line)
 	{
 
 		printf("\nEsto es la cadena guardada --->> %s\n", line);
 		free(line);
 		line = get_next_line(fd);
 	}
+	if (line)
+		free(line);
 	close (fd);
 	return (0);
 }

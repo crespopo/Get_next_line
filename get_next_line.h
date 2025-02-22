@@ -6,7 +6,7 @@
 /*   By: dacrespo <dacrespo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 13:02:08 by dacrespo          #+#    #+#             */
-/*   Updated: 2025/02/22 13:39:08 by dacrespo         ###   ########.fr       */
+/*   Updated: 2025/02/22 16:40:54 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-# define BUFFER_SIZE 5
+# define BUFFER_SIZE 100
 # endif
 
 # include <stdlib.h>

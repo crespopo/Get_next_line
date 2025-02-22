@@ -6,7 +6,7 @@
 /*   By: dacrespo <dacrespo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 12:59:33 by dacrespo          #+#    #+#             */
-/*   Updated: 2025/02/22 13:38:59 by dacrespo         ###   ########.fr       */
+/*   Updated: 2025/02/22 17:00:39 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (!s1)
 	{
 		s1 = ft_substr(s2, 0, ft_strlen(s2));
-		return (free(s2), s1);
+		return (s1);
 	}
 	len_s1 = ft_strlen(s1);
 	len_s2 = ft_strlen(s2);
@@ -66,7 +66,9 @@ char	*ft_strjoin(char *s1, char *s2)
 	join = (char *)malloc((len_total +1) * sizeof(char));
 	if (join == NULL)
 		return (NULL);
-	join = ft_substr(s1, 0, ft_strlen(s1));
+	len_s1 = 0;
+	while (*s1)
+		join[len_s1++] = *s1++;
 	while (*s2)
 		join[len_s1++]= *s2++;
 	join[len_s1] = '\0';
@@ -75,9 +77,8 @@ char	*ft_strjoin(char *s1, char *s2)
 
 char	*ft_substr(char *s, unsigned int start, size_t len)
 {
-	size_t	i;
-	size_t	j;
 	char	*str;
+	size_t	i;
 
 	if (s == NULL)
 		return (NULL);
@@ -85,17 +86,9 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	if (str == 0)
 		return (NULL);
 	i = 0;
-	j = 0;
-	while (s[i])
-	{
-		if (i >= start && j < len)
-		{
-			str[j] = s[i];
-			j++;
-		}
-		i++;
-	}
-	str[j] = 0;
+	while (i < len)
+		str[i++] = s[start++];
+	str[i] = 0;
 	return (str);
 }
 
