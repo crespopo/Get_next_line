@@ -6,7 +6,7 @@
 /*   By: dacrespo <dacrespo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 11:21:17 by dacrespo          #+#    #+#             */
-/*   Updated: 2025/02/22 17:04:49 by dacrespo         ###   ########.fr       */
+/*   Updated: 2025/02/22 18:03:42 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ char	*read_line(int fd, char *backup)
 	buffer = (char *) malloc(BUFFER_SIZE + 1);
 	if (!buffer)
 		return (NULL);
-	//while (backup == NULL || !ft_strchr(backup, '\n'))
 	while (!backup || !ft_strchr(backup, '\n'))
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);

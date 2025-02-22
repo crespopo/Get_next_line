@@ -6,7 +6,7 @@
 /*   By: dacrespo <dacrespo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 12:59:33 by dacrespo          #+#    #+#             */
-/*   Updated: 2025/02/22 17:00:39 by dacrespo         ###   ########.fr       */
+/*   Updated: 2025/02/22 18:07:36 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ char	*ft_strchr(char *s, int c)
 		{
 			return ((char *)s);
 		}
-
 		s++;
 	}
 	if (c == '\0')
@@ -70,7 +69,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (*s1)
 		join[len_s1++] = *s1++;
 	while (*s2)
-		join[len_s1++]= *s2++;
+		join[len_s1++] = *s2++;
 	join[len_s1] = '\0';
 	return (join);
 }

@@ -6,15 +6,15 @@
 /*   By: dacrespo <dacrespo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 13:02:08 by dacrespo          #+#    #+#             */
-/*   Updated: 2025/02/22 16:40:54 by dacrespo         ###   ########.fr       */
+/*   Updated: 2025/02/22 18:00:27 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-# define BUFFER_SIZE 100
+# define BUFFER_SIZE 10
 # endif
 
 # include <stdlib.h>
