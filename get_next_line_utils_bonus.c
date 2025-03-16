@@ -6,7 +6,7 @@
 /*   By: dacrespo <dacrespo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 03:32:21 by dacrespo          #+#    #+#             */
-/*   Updated: 2025/03/14 03:42:18 by dacrespo         ###   ########.fr       */
+/*   Updated: 2025/03/16 09:56:41 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ char	*ft_joinandfree(char *s1, char *s2)
 	free(s1);
 	return (temp);
 }
+
 char	*ft_substr(char *s, unsigned int start, size_t len)
 {
 	char	*str;
@@ -36,6 +37,7 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	str[i] = 0;
 	return (str);
 }
+
 size_t	ft_strlen(char *s)
 {
 	size_t	i;
@@ -67,6 +69,7 @@ char	*ft_strchr(char *s, int c)
 	}
 	return (NULL);
 }
+
 char	*ft_strjoin(char *s1, char *s2)
 {
 	size_t	len_s1;
@@ -95,4 +98,3 @@ char	*ft_strjoin(char *s1, char *s2)
 	join[len_s1] = '\0';
 	return (join);
 }
-

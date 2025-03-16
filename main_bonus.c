@@ -6,13 +6,13 @@
 /*   By: dacrespo <dacrespo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 03:16:29 by dacrespo          #+#    #+#             */
-/*   Updated: 2025/03/14 03:31:06 by dacrespo         ###   ########.fr       */
+/*   Updated: 2025/03/16 11:08:25 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-int main ()
+int	main(void)
 {
 	int		fd_1;
 	int		fd_2;
@@ -23,9 +23,9 @@ int main ()
 
 	i = 0;
 	j = 1;
-	fd_1 = open("files/text.txt", O_RDONLY);
-	fd_2 = open("files/text2.txt", O_RDONLY);
-	fd_3 = open("files/text3.txt", O_RDONLY);
+	fd_1 = open("./mi_fichero_1_alicia.txt", O_RDONLY);
+	fd_2 = open("./mi_fichero_2_mosqueteros.txt", O_RDONLY);
+	fd_3 = open("./mi_fichero_3_submarino.txt", O_RDONLY);
 	while (i < 3)
 	{
 		line = get_next_line(fd_1);

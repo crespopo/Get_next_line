@@ -6,7 +6,7 @@
 /*   By: dacrespo <dacrespo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 03:03:10 by dacrespo          #+#    #+#             */
-/*   Updated: 2025/03/14 03:54:35 by dacrespo         ###   ########.fr       */
+/*   Updated: 2025/03/16 11:06:32 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,12 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <fcntl.h>
-# include <limits.h>
 
-char	*ft_substr(char *s, unsigned int start, size_t len);
 size_t	ft_strlen(char *str);
-char	*ft_strchr(char *s, int i);
+char	*ft_strchr(char *s, int c);
 char	*ft_strjoin(char *s1, char *s2);
-char	*get_next_line(int fd);
+char	*ft_substr(char *s, unsigned int start, size_t len);
 char	*ft_joinandfree(char *s1, char *s2);
+char	*get_next_line(int fd);
 
 #endif
