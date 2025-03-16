@@ -6,11 +6,11 @@
 /*   By: dacrespo <dacrespo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 10:06:28 by dacrespo          #+#    #+#             */
-/*   Updated: 2025/03/16 10:06:33 by dacrespo         ###   ########.fr       */
+/*   Updated: 2025/03/16 13:41:49 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*read_line(int fd, char *backup)
 {
@@ -85,22 +85,22 @@ char	*next_line(char *backup)
 
 char	*get_next_line(int fd)
 {
-	static char	*backup;
+	static char	*backup[1024];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
-		if (backup)
+		if (backup[fd])
 		{
-			free(backup);
-			backup = NULL;
+			free(backup[fd]);
+			backup[fd] = NULL;
 		}
 		return (NULL);
 	}
-	backup = read_line(fd, backup);
-	if (!backup)
+	backup[fd] = read_line(fd, backup[fd]);
+	if (!backup[fd])
 		return (NULL);
-	line = extract_line(backup);
-	backup = next_line(backup);
+	line = extract_line(backup[fd]);
+	backup[fd] = next_line(backup[fd]);
 	return (line);
 }
