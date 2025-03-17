@@ -6,7 +6,7 @@
 /*   By: dacrespo <dacrespo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 03:03:10 by dacrespo          #+#    #+#             */
-/*   Updated: 2025/03/16 11:06:32 by dacrespo         ###   ########.fr       */
+/*   Updated: 2025/03/17 18:17:36 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
 # include <fcntl.h>
 
 size_t	ft_strlen(char *str);

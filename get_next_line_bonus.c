@@ -6,7 +6,7 @@
 /*   By: dacrespo <dacrespo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 10:06:28 by dacrespo          #+#    #+#             */
-/*   Updated: 2025/03/16 13:41:49 by dacrespo         ###   ########.fr       */
+/*   Updated: 2025/03/17 17:07:01 by dacrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,15 +88,8 @@ char	*get_next_line(int fd)
 	static char	*backup[1024];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
-	{
-		if (backup[fd])
-		{
-			free(backup[fd]);
-			backup[fd] = NULL;
-		}
+	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
-	}
 	backup[fd] = read_line(fd, backup[fd]);
 	if (!backup[fd])
 		return (NULL);
